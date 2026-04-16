@@ -2,7 +2,7 @@ import { Plus } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="text-center space-y-8">
+    <div className="text-center space-y-8 mt-20 mb-10">
       <div className="space-y-4">
         <h2 className="font-bold text-[48px] text-[#1F2937]">
           Friends to keep close in your life
