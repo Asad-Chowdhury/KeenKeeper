@@ -11,10 +11,10 @@ import {
   Trash2,
   Video,
 } from "lucide-react";
+import { toast } from "react-toastify";
 import {
   addTimelineLog,
   getGoalForFriend,
-  setPendingToast,
   updateGoalForFriend,
 } from "@/lib/interactionStorage";
 
@@ -23,7 +23,6 @@ const FriendsDetails = () => {
   const router = useRouter();
   const friendId = Number(params["friends-details"]);
   const [friends, setFriends] = useState([]);
-  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     const loadFriends = async () => {
@@ -34,18 +33,6 @@ const FriendsDetails = () => {
 
     loadFriends();
   }, []);
-
-  useEffect(() => {
-    if (!toastMessage) {
-      return undefined;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setToastMessage("");
-    }, 1200);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [toastMessage]);
 
   const selectedFriend = friends.find(
     (filteredFriend) => filteredFriend.id === friendId,
@@ -78,8 +65,7 @@ const FriendsDetails = () => {
     });
     const successMessage = `${newLog.title} added to timeline`;
 
-    setToastMessage(successMessage);
-    setPendingToast(successMessage);
+    toast.success(successMessage);
 
     window.setTimeout(() => {
       router.push("/timeline");
@@ -99,7 +85,7 @@ const FriendsDetails = () => {
     const parsedGoal = Number(updatedGoal);
 
     if (!Number.isFinite(parsedGoal) || parsedGoal <= 0) {
-      setToastMessage("Please enter a valid number of days.");
+      toast.error("Please enter a valid number of days.");
       return;
     }
 
@@ -111,17 +97,11 @@ const FriendsDetails = () => {
           : friend,
       ),
     );
-    setToastMessage(`Goal updated to every ${parsedGoal} days.`);
+    toast.success(`Goal updated to every ${parsedGoal} days.`);
   };
 
   return (
-    <div className="relative my-20 px-5">
-      {toastMessage ? (
-        <div className="fixed right-6 top-24 z-50 rounded-2xl bg-[#244D3F] px-5 py-3 text-sm font-medium text-white shadow-xl">
-          {toastMessage}
-        </div>
-      ) : null}
-
+    <div className="my-20 px-5">
       <div className="grid gap-5 lg:grid-cols-4 lg:grid-rows-7">
         <div className="flex flex-col items-center space-y-3 rounded-xl bg-white p-5 text-center shadow-2xl lg:row-span-4">
           <Image

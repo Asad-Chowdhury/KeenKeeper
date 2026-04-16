@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { getTimelineLogs } from "@/lib/interactionStorage";
 
 const chartColors = {
@@ -23,9 +23,9 @@ const StatsPage = () => {
     );
 
     return [
-      { name: "Call", value: totals.call, color: chartColors.call },
-      { name: "Text", value: totals.text, color: chartColors.text },
-      { name: "Video", value: totals.video, color: chartColors.video },
+      { name: "Call", value: totals.call, fill: chartColors.call },
+      { name: "Text", value: totals.text, fill: chartColors.text },
+      { name: "Video", value: totals.video, fill: chartColors.video },
     ];
   }, [logs]);
 
@@ -58,21 +58,18 @@ const StatsPage = () => {
             </div>
           </div>
 
-          <div className="h-[340px]">
+          <div className="h-85">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={chartData}
                   dataKey="value"
                   nameKey="name"
+                  fill={chartColors.call}
                   innerRadius={80}
                   outerRadius={120}
                   paddingAngle={4}
-                >
-                  {chartData.map((entry) => (
-                    <Cell key={entry.name} fill={entry.color} />
-                  ))}
-                </Pie>
+                />
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
@@ -81,14 +78,11 @@ const StatsPage = () => {
 
         <div className="space-y-4">
           {chartData.map((item) => (
-            <div
-              key={item.name}
-              className="rounded-2xl bg-white p-5 shadow-sm"
-            >
+            <div key={item.name} className="rounded-2xl bg-white p-5 shadow-sm">
               <div className="flex items-center gap-3">
                 <span
                   className="h-4 w-4 rounded-full"
-                  style={{ backgroundColor: item.color }}
+                  style={{ backgroundColor: item.fill }}
                 />
                 <div>
                   <h3 className="text-lg font-semibold text-slate-800">

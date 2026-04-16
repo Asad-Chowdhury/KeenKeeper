@@ -1,11 +1,8 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { MessageSquareMore, PhoneCall, Video } from "lucide-react";
-import {
-  consumePendingToast,
-  getTimelineLogs,
-} from "@/lib/interactionStorage";
+import { getTimelineLogs } from "@/lib/interactionStorage";
 
 const actionConfig = {
   call: {
@@ -32,19 +29,6 @@ const filterOptions = [
 const TimelinePage = () => {
   const [logs] = useState(() => getTimelineLogs());
   const [filter, setFilter] = useState("all");
-  const [toastMessage, setToastMessage] = useState(() => consumePendingToast());
-
-  useEffect(() => {
-    if (!toastMessage) {
-      return undefined;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setToastMessage("");
-    }, 1800);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [toastMessage]);
 
   const filteredLogs = useMemo(() => {
     if (filter === "all") {
@@ -55,13 +39,7 @@ const TimelinePage = () => {
   }, [filter, logs]);
 
   return (
-    <div className="relative space-y-8 px-5 py-10">
-      {toastMessage ? (
-        <div className="fixed right-6 top-24 z-50 rounded-2xl bg-[#244D3F] px-5 py-3 text-sm font-medium text-white shadow-xl">
-          {toastMessage}
-        </div>
-      ) : null}
-
+    <div className="space-y-8 px-5 py-10">
       <div className="space-y-5">
         <h1 className="text-5xl font-bold text-slate-800">Timeline</h1>
 
