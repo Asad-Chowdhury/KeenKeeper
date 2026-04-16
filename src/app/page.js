@@ -1,9 +1,12 @@
 import Image from "next/image";
+import Hero from "./components/Hero/Hero";
+import Friends from "./components/Friends/Friends";
 
 export default function Home() {
   return (
     <div>
-      <h1>This is home page</h1>
+      <Hero></Hero>
+      <Friends></Friends>
     </div>
   );
 }

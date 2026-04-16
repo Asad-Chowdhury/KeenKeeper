@@ -9,9 +9,11 @@ const NavBar = () => {
   return (
     <div className="flex flex-col sm:flex-row justify-between px-20 py-4 items-center gap-5">
       <div>
-        <h2 className="text-[24px] font-bold">
-          Keen<span className="text-[#244D3F] font-semibold">Keeper</span>
-        </h2>
+        <Link href={"/"}>
+          <h2 className="text-[24px] font-bold">
+            Keen<span className="text-[#244D3F] font-semibold">Keeper</span>
+          </h2>
+        </Link>
       </div>
       <div className="flex gap-5 text-[#64748B] text-[16px]">
         <Link
