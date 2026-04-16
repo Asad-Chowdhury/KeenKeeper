@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# KeenKeeper
+
+KeenKeeper is a friendship management web app that helps users stay in touch with the people who matter most. It lets users track friends, view relationship details, log interactions like calls or texts, and review those activities through a timeline and analytics dashboard.
+
+## Project Description
+
+The goal of KeenKeeper is to make relationship maintenance more intentional. Users can browse their friends, open a detailed profile page, check important relationship stats, update contact goals, and quickly log interactions. Those interactions are then reflected in the Timeline page and the Friendship Analytics page.
+
+## Technologies Used
+
+- Next.js 16
+- React 19
+- Tailwind CSS 4
+- DaisyUI
+- Lucide React
+- React Toastify
+- Recharts
+
+## Features
+
+- View a list of friends loaded from `public/friends.json`
+- Open a dedicated Friend Details page for each friend
+- See relationship stats such as:
+  - Days since contact
+  - Goal in days
+  - Next due date
+- Edit the relationship goal directly from the Friend Details page
+- Log quick interactions with `Call`, `Text`, and `Video` actions
+- Show toast notifications with `react-toastify`
+- Save timeline entries in browser storage
+- View interaction history on the Timeline page
+- Filter timeline entries by `Call`, `Text`, or `Video`
+- View a pie chart on the Friendship Analytics page showing interaction breakdown
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open the app in your browser:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available Scripts
 
-## Learn More
+- `npm run dev` - Start the development server
+- `npm run build` - Build the app for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint
 
-To learn more about Next.js, take a look at the following resources:
+## Data Handling
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Friend data is loaded from `public/friends.json`
+- Timeline logs and updated contact goals are stored in browser `localStorage`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Future Improvements
 
-## Deploy on Vercel
+- Add backend/database persistence
+- Add authentication for personal accounts
+- Support editing and deleting timeline logs
+- Add more advanced analytics and charts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
