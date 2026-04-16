@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import FriendsScoreCard from "./FriendsScoreCard";
 import FriendsCard from "./FriendsCard";
-import Link from "next/link";
+
 
 const Friends = () => {
   const [friends, setFriends] = useState([]);
